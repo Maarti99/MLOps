@@ -1,7 +1,0 @@
-[
-  "tests/test_app.py::test_input_empty_string",
-  "tests/test_app.py::test_input_wrong_format",
-  "tests/test_app.py::test_models_loading",
-  "tests/test_app.py::test_root_endpoint",
-  "tests/test_app.py::test_valid_inference"
-]
