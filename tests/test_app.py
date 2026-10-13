@@ -36,7 +36,23 @@ def test_input_empty_string():
     response = client.post("/predict", json={"text": ""})
     assert response.status_code == 422
 
+    data = response.json()
+    assert "detail" in data
+    error_detail = data["detail"][0]
+    assert "text" in error_detail["loc"]
+    assert error_detail["type"] == "string_too_short"
+    assert error_detail["msg"] == "String should have at least 1 character"
+
+
+
 
 def test_input_wrong_format():
     response = client.post("/predict", json={"wrong_key": "some text"})
     assert response.status_code == 422
+    
+    data = response.json()
+    assert "detail" in data
+    error_detail = data["detail"][0]
+    assert "text" in error_detail["loc"]
+    assert error_detail["type"] == "missing"
+    assert error_detail["msg"] == "Field required"
